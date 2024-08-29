@@ -1,12 +1,80 @@
 import React from 'react'
 import './Login.css'
+import { useEffect,useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
+    const navigate = useNavigate()
+
+    console.log('Login in process started')
+
+    useEffect(() => {
+        if (localStorage.token) {
+            navigate("/")
+        }
+    } ,[localStorage.token])
+
+    const [success,setSuccess] = useState("")
+    const [error,setError] = useState("")
+    const [login,setLogin] = useState(
+        {
+            email: '',
+            password:'',
+        }
+    )
+
+const loginUser = async(email,password) => {
+    try{
+        const config = {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        };
+         axios.defaults.baseURL = 'https://e-commerce-d2rw.onrender.com'
+        const response = await axios.post("/user/login", {
+            email,
+            password
+        },config)
 
 
+        console.log(response)
+        console.log(response.data)
+        
 
-    // fgccfxfxfx
+    
+        
+    
+       localStorage.setItem("token",response.data.data.access_token)
+       localStorage.setItem("user",response.data.data.user)
+       
+       
+       
+        setSuccess("Successful")
+        console.log('Login in process successful')
 
+        setTimeout(() => {
+            navigate("/")
+        },5000)
+    } catch (error) {
+        console.log(error)
+        setError(error.response.data.message)
+
+        setTimeout(() => {
+            setError("")
+        },5000)
+        return
+    }
+}
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+    loginUser(login.email,login.password)
+}
+
+function handleChange(e){
+    setLogin({...login,[e.target.name]: e.target.value})
+}
 
 
 
@@ -16,14 +84,14 @@ export const Login = () => {
         <div className="form-title">
             <h2>Login</h2>
         </div>
-        <form className="login-form">
+        <form className="login-form" method='POST' onSubmit={handleSubmit}>
             <div className="input-group">
-                <label for="login-email">Email</label>
-                <input type="email" id="login-email" placeholder="Enter your email"/>
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" name = 'email' value={login.email} onChange={handleChange}/>
             </div>
             <div className="input-group">
-                <label for="login-password">Password</label>
-                <input type="password" id="login-password" placeholder="Enter your password"/>
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" name ='password' value={login.password} onChange={handleChange}/>
             </div>
             <div className="input-group">
                 <button type="submit" className="btn btn-login">Login</button>

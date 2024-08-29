@@ -17,21 +17,28 @@ const [success,setSuccess] = useState("")
 const [error,setError] = useState("")
 const [signup,setSignup] = useState(
     {
-        name: '',
+        first_name: '',
+        last_name : '',
+        date_of_birth :'',
+        phone: '',
         email: '',
         password:'',
     }
 )
 
-const signUpUser = async(name,email,password) => {
+const signUpUser = async(first_name,last_name,date_of_birth,phone,email,password) => {
     try{
         const config = {
             headers: {
-                "Conten-Type": "application/json"
+                "Content-Type": "application/json"
             }
         }
-        const response = await axios.post("/user/signup", {
-            name,
+        axios.defaults.baseURL = 'https://e-commerce-d2rw.onrender.com'
+        const response = await axios.post("/user/create", {
+            first_name,
+            last_name,
+            date_of_birth,
+            phone,
             email,
             password
         },config)
@@ -40,6 +47,7 @@ const signUpUser = async(name,email,password) => {
         localStorage.removeItem("token")
 
         setSuccess("Successful")
+
 
         setTimeout(() => {
             navigate("/")
@@ -67,7 +75,7 @@ const handleSubmit = (e) => {
         setError("Password should be between 5 and 10 characters")
         return;
     }
-    signUpUser(signup.name,signup.email,signup.password)
+    signUpUser(signup.first_name,signup.last_name,signup.date_of_birth,signup.phone,signup.email,signup.password)
 }
 
 function handleChange(e){
@@ -79,23 +87,35 @@ function handleChange(e){
     <div className='container-body'>
     <div className="form-container">
     <div className="form-title">
-        <h2>Sign Up</h2>
+        <h2>Welcome To My Store</h2>
     </div>
     <form className="signup-form" method='POST' onSubmit={handleSubmit}>
         <div className="input-group">
-            <label for="signup-name">Name</label>
-            <input type="text" id="signup-name" placeholder="Enter your name" name='signup-name' value={signup.name} onChange={handleChange} />
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" placeholder="Enter your first name" name='first_name' value={signup.first_name} onChange={handleChange} />
         </div>
         <div className="input-group">
-            <label for="signup-email">Email</label>
-            <input type="email" id="signup-email" placeholder="Enter your email" name='signup-email' value={signup.email} onChange={handleChange}/>
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" placeholder="Enter your last name" name='last_name' value={signup.last_name} onChange={handleChange} />
         </div>
         <div className="input-group">
-            <label for="signup-password">Password</label>
-            <input type="password" id="signup-password" placeholder="Enter your password" name='signup-password' value={signup.password} onChange={handleChange}/>
+            <label for="date_of_birth">Date Of Birth</label>
+            <input type="text" id="date_of_birth" placeholder="Enter your date of birth" name='date_of_birth' value={signup.date_of_birth} onChange={handleChange} />
         </div>
         <div className="input-group">
-            <button type="submit" className="btn btn-signup">Sign Up</button>
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" placeholder="Enter your phone number" name='phone' value={signup.phone} onChange={handleChange} />
+        </div>
+        <div className="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email" name='email' value={signup.email} onChange={handleChange}/>
+        </div>
+        <div className="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" name='password' value={signup.password} onChange={handleChange}/>
+        </div>
+        <div className="input-group">
+            <button type="submit" className="btn btn-signup" >Sign Up</button>
         </div>
     </form>
 </div>

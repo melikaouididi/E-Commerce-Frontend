@@ -1,14 +1,14 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'http://localhost:8081/api/v1'
-    //baseURL: 'http://localhost:8081/api/v1'
+    baseURL: 'https://e-commerce-d2rw.onrender.com'
+    
 });
 
 const token = localStorage.getItem('token')
 if (token){
     instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 }
-
+instance.defaults.baseURL = 'https://e-commerce-d2rw.onrender.com'
 export default instance;
 

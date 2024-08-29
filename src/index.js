@@ -7,6 +7,8 @@ import {ContextUse} from './context/ContextUse'
 import { SignUpPage } from './pages/SignUpPage';
 import { LoginPage } from './pages/LoginPage';
 import { Shop } from './pages/Shop';
+import { SellerDashboard } from './pages/SellerDashboard';
+import { Cart } from './pages/Cart';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -19,6 +21,8 @@ root.render(
           <Route exact path='/register' element={<SignUpPage/>}></Route>
           <Route exact path='/signin' element={<LoginPage/>}></Route>
           <Route exact path='/shop' element={<Shop/>}></Route>
+          <Route exact path='/seller/dashboard' element={<SellerDashboard/>}></Route>
+          <Route exact path='/cart' element={<Cart/>}></Route>
 
 
         </Routes>

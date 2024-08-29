@@ -28,7 +28,7 @@ export const NavBar = () => {
                         <a className="nav-link" href="#" onClick={() => navigate('/shop')}>Shop</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#" onClick={() => navigate('/contact')}>Contact</a>
+                        <a className="nav-link" href="#" onClick={() => navigate('/seller/dashboard')}>Seller Dashboard</a>
                     </li>
                 </ul>
             </div>
