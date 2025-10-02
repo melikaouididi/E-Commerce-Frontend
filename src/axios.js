@@ -11,4 +11,3 @@ if (token){
 }
 instance.defaults.baseURL = 'https://e-commerce-d2rw.onrender.com'
 export default instance;
-
