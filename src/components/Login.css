@@ -63,10 +63,10 @@ body, h2, p, input, button {
 }
 
 .btn-login {
-    background-color: #28a745; 
+    background-color: #eb9d15; 
     color: #ffffff;
 }
 
 .btn:hover {
-    background-color: #218838;
+    background-color: #b6a71e;
 }
