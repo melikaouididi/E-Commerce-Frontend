@@ -31,7 +31,7 @@ const loginUser = async(email,password) => {
                 "Content-Type": "application/json"
             }
         };
-         axios.defaults.baseURL = 'https://e-commerce-d2rw.onrender.com'
+         axios.defaults.baseURL = 'https://e-commerce-1-oq0c.onrender.com'
         const response = await axios.post("/user/login", {
             email,
             password
