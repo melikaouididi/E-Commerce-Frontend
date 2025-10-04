@@ -10,10 +10,11 @@ export const Login = () => {
     console.log('Login in process started')
 
     useEffect(() => {
-        if (localStorage.token) {
+        if (localStorage.getItem("token")) {
             navigate("/")
         }
-    } ,[localStorage.token])
+    }, [navigate])
+
 
     const [success,setSuccess] = useState("")
     const [error,setError] = useState("")
@@ -46,19 +47,18 @@ const loginUser = async(email,password) => {
         
     
        localStorage.setItem("token",response.data.data.access_token)
-       localStorage.setItem("user",response.data.data.user)
+       localStorage.setItem("user", JSON.stringify(response.data.data.user))
        
        
        
         setSuccess("Successful")
         console.log('Login in process successful')
 
-        setTimeout(() => {
-            navigate("/")
-        },5000)
+        navigate("/")
+
     } catch (error) {
         console.log(error)
-        setError(error.response.data.message)
+        setError(error.response?.data?.message || "Login failed")
 
         setTimeout(() => {
             setError("")
