@@ -18,7 +18,7 @@ export const Header = () => {
             </div>
             <div>
                  <span> <a className="navbar-sm-brand text-light text-decoration-none" href="#" onClick={() => navigate('/register')}>Register</a></span>
-                 <span> <a className="navbar-sm-brand text-light text-decoration-none" href="#" onClick={() => navigate('/signin')}>Sign In</a></span>
+                 <span> <a className="navbar-sm-brand text-light text-decoration-none" href="#" onClick={() => navigate('/signin')}>Login</a></span>
            
             <br />
                 <a className="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i className="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
